@@ -1,0 +1,7 @@
+<div class="radical-area radical combined_mode" style="display: block;">
+<ul class="radical_table clearfix" lang="ja" style="max-height: none;">
+  <li class="radical"></li>
+  <li ng-repeat-start="(strokes, radicals) in radical_table" class="number">{{strokes}}</li>
+  <li ng-repeat="rad in radicals" class="radical available" ng-click="click({val: rad})" ng-repeat-end>{{rad}}</li>
+</ul>
+</div>

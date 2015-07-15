@@ -1,0 +1,40 @@
+<!doctype html>
+<html ng-app="app">
+    <head>
+        <meta charset="utf-8">
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.2/angular.js"></script>
+        <script src="controller.js"></script>
+        <script src="search_bar.js"></script>
+        <script src="radical_table.js"></script>
+        <script src="query_service.js"></script>
+        <link rel="stylesheet" href="jisho.css">
+        <link rel="stylesheet" href="style.css">
+    </head>
+    <body ng-controller="main">
+       <a id="forkme" href="#"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://camo.githubusercontent.com/38ef81f8aca64bb9a64448d0d70f1308ef5341ab/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f6461726b626c75655f3132313632312e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png"></a>
+
+       <div id="container">
+          <div id="main">
+            <search-bar submit="search_submit(val)" api="search_bar"></search-bar>
+            <radical-table click="add(val)"></radical-table>
+            <h3>{{status}}</h3>
+            <div id="results">
+              <p ng-repeat="word in results track by $index">
+                  <a target="_blank" ng-href="http://jisho.org/search/{{word | escape}}" >{{word}}</a>
+              </p>
+            </div>
+          </div>
+
+          <div id="instructions">
+            <h3>Contextual kanji lookup</h3>
+            This tool allows you to look up Japanese words by radical patterns. Here are a few examples:
+            <ul>
+              <li ng-repeat="str in examples">
+              <a href ng-click="search_example(str)" >{{str}}</a>
+              </li>
+            </ul>
+          </div>
+      </div>
+
+    </body>
+</html>

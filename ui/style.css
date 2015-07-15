@@ -1,0 +1,56 @@
+#container {
+    position: relative;
+}
+
+#instructions {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 400px;
+}
+
+#main {
+  width: 900px;
+  margin: 0 auto;
+  padding-top: 1em
+}
+
+.radical-area { 
+  width:845px;
+  margin: 0 auto;
+}
+
+.search-form {
+  width: 70%;
+  margin: 0 auto;
+}
+
+#keyword {
+  font-size: 22px;
+}
+
+#results {
+  width: 100%;
+  margin: 0 auto;
+
+  display: flex;
+  flex-wrap: wrap;
+}
+
+#results p {
+  font-size: 300%;
+  margin: 10px;
+}
+
+@media (max-width: 1300px) {
+    #forkme {
+        display: none;
+    }
+
+    #instructions {
+        margin-top: 4em;
+        position: relative;
+        width: 400px;
+    }
+}
+
