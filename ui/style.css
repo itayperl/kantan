@@ -10,14 +10,9 @@
 }
 
 #main {
-  width: 900px;
+  width: 832px;
   margin: 0 auto;
   padding-top: 1em
-}
-
-.radical-area { 
-  width:845px;
-  margin: 0 auto;
 }
 
 .search-form {
@@ -39,7 +34,15 @@
 
 #results p {
   font-size: 300%;
-  margin: 10px;
+  margin-right: 20px;
+}
+
+h3.status {
+    margin-top: 30px;
+}
+
+#container a {
+    text-decoration: none;
 }
 
 @media (max-width: 1300px) {
