@@ -13,6 +13,8 @@ import re
 
 PATTERN_RE = re.compile(r'\[[^\[\]]*\]|.')
 
+MAX_RESULTS = 50
+
 def lookup(rad_dawg, dict_dawg, pattern):
     components = []
 
@@ -31,7 +33,7 @@ def lookup(rad_dawg, dict_dawg, pattern):
         else:
             components.append(set([c]))
 
-    return dict_dawg.lookup_word(components)
+    return dict_dawg.lookup_word(components)[:MAX_RESULTS]
 
 def json_service(host, port, handler):
 
