@@ -3,7 +3,6 @@
 
 import json
 from collections import OrderedDict
-import copy
 
 class DawgNode(object):
     NextId = 0
