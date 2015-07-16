@@ -3,6 +3,7 @@ from dict_dawg import DictDawg
 
 from werkzeug.wrappers import Request, Response
 from werkzeug.serving import run_simple
+import romkan
 
 import json
 import functools
@@ -12,12 +13,18 @@ import re
 
 PATTERN_RE = re.compile(r'\[[^\[\]]*\]|.')
 
+MAX_RESULTS = 50
+
 def lookup(rad_dawg, dict_dawg, pattern):
     components = []
 
     # sanity
     if len(pattern) > 40 and pattern.count('[') > 20:
         return []
+
+    # romaji => kana
+    pattern = re.sub('[A-Z]+', lambda m: romkan.to_katakana(m.group(0)), pattern)
+    pattern = re.sub('[a-z]+', lambda m: romkan.to_hiragana(m.group(0)), pattern)
 
     for c in PATTERN_RE.findall(pattern):
         if c[0] == '[' and c[-1] == ']':
@@ -26,7 +33,7 @@ def lookup(rad_dawg, dict_dawg, pattern):
         else:
             components.append(set([c]))
 
-    return dict_dawg.lookup_word(components)
+    return dict_dawg.lookup_word(components)[:MAX_RESULTS]
 
 def json_service(host, port, handler):
 

@@ -1,5 +1,5 @@
 #container {
-    position: relative;
+  position: relative;
 }
 
 #instructions {
@@ -12,7 +12,7 @@
 #main {
   width: 832px;
   margin: 0 auto;
-  padding-top: 1em
+  padding-top: 1em;
 }
 
 .search-form {
@@ -24,36 +24,53 @@
   font-size: 22px;
 }
 
+button.plusbtn {
+  background: #aaaaaa;
+  border-radius: 8px;
+  font-size: 20px;
+  width: 2.3rem;
+  height: 2.3rem;
+  cursor:pointer;
+}
+
+button.plusbtn:hover {
+  background: #6b6b6b;
+  text-decoration: none;
+}
+
+button.plusbtn:before {
+    content: "\271A"
+}
+
 #results {
   width: 100%;
   margin: 0 auto;
-
   display: flex;
   flex-wrap: wrap;
 }
 
 #results p {
   font-size: 300%;
+  margin: 0;
   margin-right: 20px;
 }
 
 h3.status {
-    margin-top: 30px;
+  margin-top: 30px;
 }
 
 #container a {
-    text-decoration: none;
+  text-decoration: none;
 }
 
 @media (max-width: 1300px) {
-    #forkme {
-        display: none;
-    }
+  #forkme {
+    display: none;
+  }
 
-    #instructions {
-        margin-top: 4em;
-        position: relative;
-        width: 400px;
-    }
+  #instructions {
+    margin-top: 4em;
+    position: relative;
+    width: 400px;
+  }
 }
-
