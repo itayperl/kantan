@@ -78,8 +78,5 @@ app.directive 'keepFocus', ->
   return {
     require: 'ngModel',
     link: (scope, element, attrs, ctrl) ->
-      old_render = ctrl.$render
-      ctrl.$render = ->
-        old_render()
-        element[0].focus()
+      element.on 'blur', -> element[0].focus()
   }
