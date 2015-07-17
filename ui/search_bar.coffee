@@ -8,11 +8,12 @@ app.directive 'searchBar', ->
         pre  = $scope.text.substring(0, $scope.caret)
         post = $scope.text.substring($scope.caret, $scope.text.length)
 
+        if not /\[[^\]]*$/.test(pre)
+          str = "[#{str}]"
+          offset -= 1
+
         $scope.text   = pre + str + post
         $scope.caret += str.length + offset
-
-      $scope.add_grp = ->
-        insert('[]', -1)
 
       $scope.api = {
         insert: (str) -> insert(str, 0)
@@ -65,8 +66,8 @@ app.directive 'trackCaret', ($timeout) ->
       # watch caret
       scope.$watch( (-> getCursorPos(element[0])), ((newVal) -> scope.caret = newVal) )
 
-      # update caret at keyup and mouseup
-      element.on('keyup mouseup', -> scope.$apply())
+      # update caret (this combination seems to work)
+      element.on('keyup mouseup keydown', -> $timeout(-> scope.$apply()) )
 
       # fixes caret not updating with japanese input method, after converting from kana
       scope.$watch('model', ((newVal) -> $timeout(-> scope.$digest()) ))
@@ -77,8 +78,5 @@ app.directive 'keepFocus', ->
   return {
     require: 'ngModel',
     link: (scope, element, attrs, ctrl) ->
-      old_render = ctrl.$render
-      ctrl.$render = ->
-        old_render()
-        element[0].focus()
+      element.on 'blur', -> element[0].focus()
   }

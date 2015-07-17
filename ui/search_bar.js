@@ -15,11 +15,12 @@
           var post, pre;
           pre = $scope.text.substring(0, $scope.caret);
           post = $scope.text.substring($scope.caret, $scope.text.length);
+          if (!/\[[^\]]*$/.test(pre)) {
+            str = "[" + str + "]";
+            offset -= 1;
+          }
           $scope.text = pre + str + post;
           return $scope.caret += str.length + offset;
-        };
-        $scope.add_grp = function() {
-          return insert('[]', -1);
         };
         $scope.api = {
           insert: function(str) {
@@ -80,8 +81,10 @@
         }), (function(newVal) {
           return scope.caret = newVal;
         }));
-        element.on('keyup mouseup', function() {
-          return scope.$apply();
+        element.on('keyup mouseup keydown', function() {
+          return $timeout(function() {
+            return scope.$apply();
+          });
         });
         return scope.$watch('model', (function(newVal) {
           return $timeout(function() {
@@ -96,12 +99,9 @@
     return {
       require: 'ngModel',
       link: function(scope, element, attrs, ctrl) {
-        var old_render;
-        old_render = ctrl.$render;
-        return ctrl.$render = function() {
-          old_render();
+        return element.on('blur', function() {
           return element[0].focus();
-        };
+        });
       }
     };
   });

@@ -6,8 +6,8 @@ app.controller 'main', ($scope, queryService) ->
   $scope.add = (rad) ->
     $scope.search_bar.insert(rad)
 
-  $scope.status = ''
-  $scope.results   = []
+  $scope.status  = ''
+  $scope.results = []
 
   $scope.search_submit = (term) ->
     $scope.status = 'Searching...'
@@ -22,7 +22,7 @@ app.controller 'main', ($scope, queryService) ->
         $scope.status = 'Error!'
 
     xhr.error ->
-        $scope.status = 'Error!'
+      $scope.status = 'Error!'
 
     xhr.finally ->
       $scope.searching = False
