@@ -66,8 +66,8 @@ app.directive 'trackCaret', ($timeout) ->
       # watch caret
       scope.$watch( (-> getCursorPos(element[0])), ((newVal) -> scope.caret = newVal) )
 
-      # update caret at keyup and mouseup
-      element.on('keyup mouseup', -> scope.$apply())
+      # update caret (this combination seems to work)
+      element.on('keyup mouseup keydown', -> $timeout(-> scope.$apply()) )
 
       # fixes caret not updating with japanese input method, after converting from kana
       scope.$watch('model', ((newVal) -> $timeout(-> scope.$digest()) ))
