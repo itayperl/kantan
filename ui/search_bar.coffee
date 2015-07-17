@@ -8,11 +8,12 @@ app.directive 'searchBar', ->
         pre  = $scope.text.substring(0, $scope.caret)
         post = $scope.text.substring($scope.caret, $scope.text.length)
 
+        if not /\[[^\]]*$/.test(pre)
+          str = "[#{str}]"
+          offset -= 1
+
         $scope.text   = pre + str + post
         $scope.caret += str.length + offset
-
-      $scope.add_grp = ->
-        insert('[]', -1)
 
       $scope.api = {
         insert: (str) -> insert(str, 0)
