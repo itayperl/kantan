@@ -83,5 +83,9 @@ app.directive 'keepFocus', ->
   return {
     require: 'ngModel',
     link: (scope, element, attrs, ctrl) ->
-      element.on 'blur', -> element[0].focus()
+      element.on 'blur', ->
+        # keep focus but don't scroll into view
+        [x, y] = [window.scrollX, window.scrollY]
+        element[0].focus()
+        window.scrollTo(x, y)
   }
