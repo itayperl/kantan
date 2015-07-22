@@ -3,7 +3,7 @@ app.directive 'searchBar', ->
     restrict: 'E',
     templateUrl: 'search_bar.html',
     scope: { submit: '&', api: '=' }
-    controller: ($scope) ->
+    controller: ($scope, $timeout) ->
       insert = (str, offset) ->
         pre  = $scope.text.substring(0, $scope.caret)
         post = $scope.text.substring($scope.caret, $scope.text.length)
@@ -14,6 +14,11 @@ app.directive 'searchBar', ->
 
         $scope.text   = pre + str + post
         $scope.caret += str.length + offset
+
+      $scope.onSubmit = ->
+        # wait 300ms to compensate for click delay: when entering a readical
+        # and pressing enter quickly, the submit event fires before the click event
+        $timeout( (-> $scope.submit(val: $scope.text) ), 300 )
 
       $scope.api = {
         insert: (str) -> insert(str, 0)
