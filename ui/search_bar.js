@@ -9,7 +9,7 @@
         submit: '&',
         api: '='
       },
-      controller: function($scope) {
+      controller: function($scope, $timeout) {
         var insert;
         insert = function(str, offset) {
           var post, pre;
@@ -21,6 +21,13 @@
           }
           $scope.text = pre + str + post;
           return $scope.caret += str.length + offset;
+        };
+        $scope.onSubmit = function() {
+          return $timeout((function() {
+            return $scope.submit({
+              val: $scope.text
+            });
+          }), 300);
         };
         $scope.api = {
           insert: function(str) {
