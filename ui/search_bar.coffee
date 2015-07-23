@@ -2,7 +2,7 @@ app.directive 'searchBar', ->
   return {
     restrict: 'E',
     templateUrl: 'search_bar.html',
-    scope: { submit: '&', api: '=' }
+    scope: { submit: '&', api: '=', text: '=value' }
     controller: ($scope, $timeout) ->
       insert = (str, offset) ->
         pre  = $scope.text.substring(0, $scope.caret)
@@ -22,13 +22,9 @@ app.directive 'searchBar', ->
 
       $scope.api = {
         insert: (str) -> insert(str, 0)
-
-        set: (str) ->
-          $scope.text = str
-          $scope.caret = str.length
       }
 
-      $scope.text = ''
+      $scope.caret = $scope.text.length
   }
 
 app.directive 'trackCaret', ($timeout) ->
@@ -60,8 +56,6 @@ app.directive 'trackCaret', ($timeout) ->
       model: '=ngModel',
     },
     link: (scope, element, attrs, ctrl) ->
-      scope.caret = 0
-
       # update caret after every render
       old_render = ctrl.$render
       ctrl.$render = ->
@@ -78,11 +72,13 @@ app.directive 'trackCaret', ($timeout) ->
       scope.$watch('model', ((newVal) -> $timeout(-> scope.$digest()) ))
   }
 
-app.directive 'keepFocus', ->
+app.directive 'keepFocus', ($timeout) ->
 
   return {
     require: 'ngModel',
     link: (scope, element, attrs, ctrl) ->
+      $timeout -> element[0].focus()
+
       element.on 'blur', ->
         # keep focus but don't scroll into view
         [x, y] = [window.scrollX, window.scrollY]
