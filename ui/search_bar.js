@@ -7,7 +7,8 @@
       templateUrl: 'search_bar.html',
       scope: {
         submit: '&',
-        api: '='
+        api: '=',
+        text: '=value'
       },
       controller: function($scope, $timeout) {
         var insert;
@@ -32,13 +33,9 @@
         $scope.api = {
           insert: function(str) {
             return insert(str, 0);
-          },
-          set: function(str) {
-            $scope.text = str;
-            return $scope.caret = str.length;
           }
         };
-        return $scope.text = '';
+        return $scope.caret = $scope.text.length;
       }
     };
   });
@@ -77,7 +74,6 @@
       },
       link: function(scope, element, attrs, ctrl) {
         var old_render;
-        scope.caret = 0;
         old_render = ctrl.$render;
         ctrl.$render = function() {
           old_render();
@@ -102,12 +98,18 @@
     };
   });
 
-  app.directive('keepFocus', function() {
+  app.directive('keepFocus', function($timeout) {
     return {
       require: 'ngModel',
       link: function(scope, element, attrs, ctrl) {
-        return element.on('blur', function() {
+        $timeout(function() {
           return element[0].focus();
+        });
+        return element.on('blur', function() {
+          var x, y, _ref;
+          _ref = [window.scrollX, window.scrollY], x = _ref[0], y = _ref[1];
+          element[0].focus();
+          return window.scrollTo(x, y);
         });
       }
     };
