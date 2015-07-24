@@ -98,4 +98,3 @@ class RadicalDawg(Dawg):
         dfs(self.root, u''.join(sorted(radicals, key=self._sort_key)), 0)
 
         return results
-

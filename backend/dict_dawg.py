@@ -1,6 +1,10 @@
+# coding:utf-8
 from dawg import Dawg
 import re
 from collections import defaultdict
+import romkan
+
+HIRAGANA = set(''.join(romkan.KANROM_H.keys()))
 
 class DictDawg(Dawg):
 
@@ -58,20 +62,28 @@ class DictDawg(Dawg):
     def lookup_word(self, word):
         results = []
 
-        def dfs(node, word, count):
-            if len(word) == 0:
+        def dfs(node, word, count, wildcard = False):
+
+            def child_count():
                 if node.final:
-                    results.append(self.data[count])
+                    return count + 1
+                else:
+                    return count
+
+            if node.final and len(word) == 0:
+                results.append(self.data[count])
+
+            if len(word) == 0 and not wildcard:
                 return
 
             for label, child in node.edges.iteritems():
-                if label in word[0]:
-                    if node.final:
-                        child_count = count + 1
-                    else:
-                        child_count = count
-
-                    dfs(child, word[1:], child_count)
+                if wildcard and label in HIRAGANA:
+                    dfs(child, word, child_count(), wildcard)
+                elif len(word) > 0:
+                    if ('+' in word[0] or u'＋' in word[0]) and label in HIRAGANA:
+                        dfs(child, word[1:], child_count(), True)
+                    elif label in word[0]:
+                        dfs(child, word[1:], child_count(), False)
 
                 count += child.count
 
