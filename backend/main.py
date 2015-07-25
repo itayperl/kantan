@@ -23,8 +23,8 @@ def lookup(rad_dawg, dict_dawg, pattern):
         return []
 
     # romaji => kana
-    pattern = re.sub('[A-Z]+', lambda m: romkan.to_katakana(m.group(0)), pattern)
-    pattern = re.sub('[a-z]+', lambda m: romkan.to_hiragana(m.group(0)), pattern)
+    pattern = re.sub('[-A-Z]+', lambda m: romkan.to_katakana(m.group(0)), pattern)
+    pattern = re.sub('[-a-z]+', lambda m: romkan.to_hiragana(m.group(0)), pattern)
 
     for c in PATTERN_RE.findall(pattern):
         if c[0] == '[' and c[-1] == ']':
