@@ -2,7 +2,7 @@
 <html ng-app="app">
     <head>
         <meta charset="utf-8">
-        <title>Kanji lookup</title>
+        <title>◯◯</title>
         <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.2/angular.min.js"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.2/angular-route.min.js"></script>
         <script src="controller.js"></script>
@@ -19,15 +19,41 @@
           <div ng-view></div>
 
           <div id="instructions">
-            <h3>Contextual kanji lookup</h3>
-            This tool allows you to look up Japanese words by radical patterns. Here are a few examples:
+            <h2>What is this?</h2>
+            <p>This tool is designed to make kanji lookup easier by combining kanji lookup and word lookup into one. Instead of
+            finding each kanji separately and then looking up the complete word in the dictionary, here you can specify a
+            pattern for a complete word using the radicals that you recognize, and find all the words that match that pattern.</p>
+
+            <h2>Syntax and usage</h2>
             <ul>
-                <li><a href="#/[儿田]法">[儿田]法</a></li>
-                <li><a href="#/[罒]す">[罒]す</a></li>
-                <li><a href="#/[乃]う">[乃]う</a></li>
-                <li><a href="#/[韭][火]">[韭][火]</a></li>
-                <li><a href="#/飛び[]る">飛び[]る</a></li>
+                <li>A pair of brackets matches a single kanji. Between the brackets you may specify the radicals that the kanji <em>must</em> contain.
+                    <ul>
+                        <li><a href="#/[罒]す">[罒]す</a> matches 壊す</li>
+                        <li><a href="#/[儿田]法">[儿田]法</a> matches 魔法</li>
+                        <li><a href="#/真っ[]ぐ">真っ[]ぐ</a> matches 真っ直ぐ</li>
+                        <li><a href="#/[韭][火]">[韭][火]</a> matches 殲滅</li>
+                    </ul>
+                    You can insert radicals using the radical table. Brackets are added automatically if necessary.
+                </li>
+                <li>You can use lowercase romaji for hirgana and uppercase romaji for katakana.
+                    <ul>
+                        <li><a href="#/[]BO-RU">[]BO-RU</a> matches 段ボール</li>
+                        <li><a href="#/[冖]biru">[冖]biru</a> matches 帯びる</li>
+                    </ul>
+                </li>
+                <li>+ stands for one or more hiragana characters. This is useful when you don't know the dictionary form of a word.
+                    <ul>
+                        <li><a href="#/[扌]り[辶]+">[扌]り[辶]+</a> matches 振り返る</li>
+                    </ul>
+                </li>
             </ul>
+            
+            <h2>Work in progress</h2>
+            <p>This tool is a work in progress. If you have an idea how to further improve this tool, please let me know by <a href="https://github.com/itayperl/radical-lookup/issues">opening an issue on GitHub</a>.</p>
+
+            <h2>Attributions</h2>
+            <p>This site uses the <a href="http://www.edrdg.org/jmdict/j_jmdict.html">JMdict</a> and <a href="http://www.kanjicafe.com/kradfile_license.htm">kradfile-u</a> dictionary files.
+            These files are the property of the Electronic Dictionary Research and Development Group, and are used in conformance with the Group's <a href="http://www.edrdg.org/edrdg/licence.html">licence</a>.</p>
           </div>
       </div>
 
