@@ -14,13 +14,6 @@ body {
   clear: both;
 }
 
-input[type="text"] {
-  width: 100%;
-  height: 1.5em;
-  font-family: inherit;
-  background: white;
-}
-
 ul.radical_table {
   margin: 0;
   padding: 0;
