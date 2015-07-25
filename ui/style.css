@@ -1,3 +1,22 @@
+h1, h2, h3 {
+  font-family: "Fira Sans", sans-serif;
+  color: #222222;
+}
+
+h2 {
+  font-weight: normal;
+  margin-top: 10px;
+  font-size: x-large;
+}
+
+h2.status {
+  margin-top: 30px;
+}
+
+p {
+    text-align: justify;
+}
+
 #container {
   position: relative;
 }
@@ -39,18 +58,6 @@
   font-size: 300%;
   margin: 0;
   margin-right: 20px;
-}
-
-h2 {
-  font-family: sans-serif;
-  font-weight: normal;
-  margin-top: 10px;
-  color: #222222;
-  font-size: x-large;
-}
-
-h2.status {
-  margin-top: 30px;
 }
 
 #container a {

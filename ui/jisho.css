@@ -1,11 +1,3 @@
-﻿*,
-*:before,
-*:after {
-  -webkit-box-sizing: border-box;
-  -moz-box-sizing: border-box;
-  box-sizing: border-box;
-}
-
 body {
   font-family: "Helvetica Neue", Helvetica, Arial, "HiraKakuPro-W3", "Hiragino Kaku Gothic Pro W3", "Hiragino Kaku Gothic Pro", "ヒラギノ角ゴ Pro W3", "メイリオ", Meiryo, "游ゴシック", YuGothic, "ＭＳ Ｐゴシック", "MS PGothic", "ＭＳ ゴシック", "MS Gothic", sans, sans-serif;
   line-height: 1.5;
@@ -23,21 +15,10 @@ body {
 }
 
 input[type="text"] {
-  border-radius: 0;
-  background-color: #FFFFFF;
-  font-family: inherit;
-  border-style: solid;
-  border-width: 1px;
-  border-color: #cccccc;
-  box-shadow: inset 0 1px 2px rgba(0,0,0,0.1);
-  color: rgba(0,0,0,0.75);
-  display: block;
-  font-size: 0.875rem;
-  margin: 0 0 1rem 0;
-  padding: 0.5rem;
-  height: 2.3125rem;
   width: 100%;
-  transition: box-shadow 0.45s, border-color 0.45s ease-in-out;
+  height: 1.5em;
+  font-family: inherit;
+  background: white;
 }
 
 ul.radical_table {
@@ -45,13 +26,20 @@ ul.radical_table {
   padding: 0;
 }
 
-
 body a {
   color: #4A80B5;
 }
 
 body a:hover {
   color: #222;
+}
+
+.radical-area *,
+.radical-area *:before,
+.radical-area *:after {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
 }
 
 .radical_table .radical.available:hover {
