@@ -1,7 +1,7 @@
 <div id="main">
   <search-bar submit="search_submit(val)" api="search_bar" value="term"></search-bar>
   <radical-table click="add(val)"></radical-table>
-  <h3 class="status">{{status}}</h3>
+  <h2 class="status">{{status}}</h2>
   <div id="results">
     <p ng-repeat="word in results track by $index">
         <a target="_blank" ng-href="http://jisho.org/search/{{word | escape}}" >{{word}}</a>

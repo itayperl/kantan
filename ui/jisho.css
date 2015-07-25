@@ -40,34 +40,11 @@ input[type="text"] {
   transition: box-shadow 0.45s, border-color 0.45s ease-in-out;
 }
 
-div,
-ul,
-li,
-h3,
-form {
+ul.radical_table {
   margin: 0;
   padding: 0;
 }
 
-h3 {
-  font-family: "Helvetica Neue", Helvetica, Arial, "HiraKakuPro-W3", "Hiragino Kaku Gothic Pro W3", "Hiragino Kaku Gothic Pro", "ヒラギノ角ゴ Pro W3", "メイリオ", Meiryo, "游ゴシック", YuGothic, "ＭＳ Ｐゴシック", "MS PGothic", "ＭＳ ゴシック", "MS Gothic", sans, sans-serif;
-  font-weight: normal;
-  font-style: normal;
-  color: #222222;
-  margin-top: 0.2rem;
-  margin-bottom: 0.5rem;
-  line-height: 1.4;
-  font-size: 1.375rem;
-}
-
-ul {
-  font-size: 1rem;
-  line-height: 1.6;
-  margin-bottom: 1.25rem;
-  list-style-position: outside;
-  font-family: inherit;
-  margin-left: 1.1rem;
-}
 
 body a {
   color: #4A80B5;

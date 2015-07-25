@@ -15,6 +15,10 @@
   padding-top: 1em;
 }
 
+#instructions ul {
+    padding-left: 1.2em;
+}
+
 .search-form {
   width: 70%;
   margin: 0 auto;
@@ -37,7 +41,15 @@
   margin-right: 20px;
 }
 
-h3.status {
+h2 {
+  font-family: sans-serif;
+  font-weight: normal;
+  margin-top: 10px;
+  color: #222222;
+  font-size: x-large;
+}
+
+h2.status {
   margin-top: 30px;
 }
 
@@ -53,6 +65,6 @@ h3.status {
   #instructions {
     margin-top: 4em;
     position: relative;
-    width: 400px;
+    width: 600px;
   }
 }
