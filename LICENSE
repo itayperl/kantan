@@ -1,3 +1,14 @@
+This software uses the JMdict (http://www.edrdg.org/jmdict/j_jmdict.html) and
+kradfile-u (http://www.kanjicafe.com/kradfile_license.htm) dictionary files.
+These files are the property of the Electronic Dictionary Research and
+Development Group, and are used in conformance with the Group's licence
+(http://www.edrdg.org/edrdg/licence.html).
+
+The following licence refers to the contents of this repository, excluding the
+JMdict_e and kradfile-u files.
+
+======
+
 This is free and unencumbered software released into the public domain.
 
 Anyone is free to copy, modify, publish, use, compile, sell, or
@@ -22,4 +33,3 @@ ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
 OTHER DEALINGS IN THE SOFTWARE.
 
 For more information, please refer to <http://unlicense.org>
-
