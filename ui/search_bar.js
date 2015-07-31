@@ -106,10 +106,12 @@
           return element[0].focus();
         });
         return element.on('blur', function() {
-          var x, y, _ref;
-          _ref = [window.scrollX, window.scrollY], x = _ref[0], y = _ref[1];
-          element[0].focus();
-          return window.scrollTo(x, y);
+          return $timeout(function() {
+            var x, y, _ref;
+            _ref = [window.scrollX, window.scrollY], x = _ref[0], y = _ref[1];
+            element[0].focus();
+            return window.scrollTo(x, y);
+          });
         });
       }
     };

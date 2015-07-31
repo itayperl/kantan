@@ -82,7 +82,7 @@ class DictDawg(Dawg):
                 elif len(word) > 0:
                     if ('+' in word[0] or u'＋' in word[0]) and label in HIRAGANA:
                         dfs(child, word[1:], child_count(), True)
-                    elif label in word[0]:
+                    elif label in word[0] or (('.' in word[0] or u'。' in word[0]) and label in HIRAGANA):
                         dfs(child, word[1:], child_count(), False)
 
                 count += child.count
