@@ -115,14 +115,17 @@ p {
   text-decoration: none;
 }
 
-@media (max-width: 1300px) {
-  #forkme {
-    display: none;
-  }
-
+@media (max-width: 1679px) {
   #instructions {
+    margin: auto;
     margin-top: 4em;
     position: relative;
     width: 600px;
+  }
+}
+
+@media (max-width: 900px) {
+  #forkme {
+    display: none;
   }
 }
