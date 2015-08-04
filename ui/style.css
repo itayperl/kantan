@@ -42,6 +42,10 @@ p {
   width: 400px;
 }
 
+.example {
+  font-size: 140%
+}
+
 #main {
   width: 832px;
   margin: 0 auto;
