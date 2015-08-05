@@ -56,11 +56,15 @@ def main():
     parser.add_argument('-p', '--port', type=int, default=4000)
     args = parser.parse_args()
 
+    print 'Creating in-memory database (may take up to 30 seconds)...', 
+
     with codecs.open('kradfile-u', 'r', 'utf-8') as f:
         rad_dawg = RadicalDawg.from_kradfile(f)
 
     with codecs.open('JMdict_e', 'r', 'utf-8') as jmdict:
         dict_dawg = DictDawg.from_jmdict(jmdict)
+
+    print 'Done!'
 
     json_service('0.0.0.0', args.port, functools.partial(lookup, rad_dawg, dict_dawg))
 
