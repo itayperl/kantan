@@ -2,7 +2,7 @@
 (function() {
   app.service('queryService', function($http) {
     this.lookup = function(search_term) {
-      return $http.get('http://kantan.s.co:4000/' + search_term);
+      return $http.get('http://kantan.nonze.ro:4000/' + search_term);
     };
     return this;
   });
