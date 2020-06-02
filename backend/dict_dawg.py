@@ -4,7 +4,7 @@ import re
 from collections import defaultdict
 import romkan
 
-HIRAGANA = set(''.join(romkan.KANROM_H.keys()))
+HIRAGANA = set(''.join(list(romkan.KANROM_H.keys())))
 
 class DictDawg(Dawg):
 
@@ -40,19 +40,19 @@ class DictDawg(Dawg):
         for line in fp:
             if current_keb is not None:
                 # look for ke_pri
-                if line.startswith(u'<ke_pri>'):
-                    pris.add(line.replace(u'<ke_pri>',u'').replace(u'</ke_pri>',u'').strip())
+                if line.startswith('<ke_pri>'):
+                    pris.add(line.replace('<ke_pri>','').replace('</ke_pri>','').strip())
                 else:
                     keb_to_pri[current_keb] = min(keb_to_pri[current_keb], DictDawg.ke_pri_order(pris))
                     current_keb = None
             else:
-                if line.startswith(u'<keb>'):
-                    current_keb = line.replace(u'<keb>',u'').replace(u'</keb>',u'').strip()
+                if line.startswith('<keb>'):
+                    current_keb = line.replace('<keb>','').replace('</keb>','').strip()
                     max_len = max(max_len, len(current_keb))
                     pris = set()
 
         dawg = DictDawg()
-        for keb, pri in sorted(keb_to_pri.iteritems()):
+        for keb, pri in sorted(keb_to_pri.items()):
             dawg.insert(keb, (keb, keb_to_pri[keb]))
         dawg.finish()
 
@@ -76,13 +76,13 @@ class DictDawg(Dawg):
             if len(word) == 0 and not wildcard:
                 return
 
-            for label, child in node.edges.iteritems():
+            for label, child in node.edges.items():
                 if wildcard and label in HIRAGANA:
                     dfs(child, word, child_count(), wildcard)
                 elif len(word) > 0:
-                    if ('+' in word[0] or u'＋' in word[0]) and label in HIRAGANA:
+                    if ('+' in word[0] or '＋' in word[0]) and label in HIRAGANA:
                         dfs(child, word[1:], child_count(), True)
-                    elif label in word[0] or (('.' in word[0] or u'。' in word[0]) and label in HIRAGANA):
+                    elif label in word[0] or (('.' in word[0] or '。' in word[0]) and label in HIRAGANA):
                         dfs(child, word[1:], child_count(), False)
 
                 count += child.count
@@ -90,4 +90,4 @@ class DictDawg(Dawg):
         dfs(self.root, word, 0)
 
         # sort by priority
-        return [ x[0] for x in sorted(results, key=lambda (x,y): y) ]
+        return [ x[0] for x in sorted(results, key=lambda x_y: x_y[1]) ]

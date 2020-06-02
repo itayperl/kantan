@@ -10,8 +10,10 @@ import functools
 import codecs
 import argparse
 import re
+import pathlib
 
 PATTERN_RE = re.compile(r'\[[^\[\]]*\]|.')
+DATA_DIR = pathlib.Path(__file__).parent
 
 MAX_RESULTS = 50
 
@@ -28,7 +30,7 @@ def lookup(rad_dawg, dict_dawg, pattern):
 
     for c in PATTERN_RE.findall(pattern):
         if c[0] == '[' and c[-1] == ']':
-            s = rad_dawg.lookup_kanji(u''.join(c[1:-1]))
+            s = rad_dawg.lookup_kanji(''.join(c[1:-1]))
             components.append(s)
         else:
             components.append(set([c]))
@@ -56,15 +58,15 @@ def main():
     parser.add_argument('-p', '--port', type=int, default=4000)
     args = parser.parse_args()
 
-    print 'Creating in-memory database (may take up to 30 seconds)...', 
+    print('Creating in-memory database (may take up to 30 seconds)...', end=' ') 
 
-    with codecs.open('kradfile-u', 'r', 'utf-8') as f:
+    with open(DATA_DIR / 'kradfile-u', 'r') as f:
         rad_dawg = RadicalDawg.from_kradfile(f)
 
-    with codecs.open('JMdict_e', 'r', 'utf-8') as jmdict:
+    with open(DATA_DIR / 'JMdict_e', 'r') as jmdict:
         dict_dawg = DictDawg.from_jmdict(jmdict)
 
-    print 'Done!'
+    print('Done!')
 
     json_service('0.0.0.0', args.port, functools.partial(lookup, rad_dawg, dict_dawg))
 
