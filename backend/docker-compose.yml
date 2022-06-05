@@ -1,0 +1,6 @@
+services:
+  kantan:
+    image: kantan
+    restart: always
+    ports:
+      - "127.0.0.1:14000:8080"
