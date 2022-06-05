@@ -1,2 +1,4 @@
-werkzeug
+flask
+flask-cors
+uwsgi
 romkan
