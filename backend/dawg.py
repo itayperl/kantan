@@ -23,11 +23,11 @@ class DawgNode(object):
         else:
             arr.append("0")
  
-        for (label, node) in self.edges.iteritems():
+        for (label, node) in self.edges.items():
             arr.append( label )
             arr.append( str( node.id ) )
  
-        return u"_".join(arr)
+        return "_".join(arr)
  
     def __hash__(self):
         return self.__str__().__hash__()
@@ -43,7 +43,7 @@ class DawgNode(object):
         # including self
         count = 0
         if self.final: count += 1
-        for label, node in self.edges.iteritems():
+        for label, node in self.edges.items():
             count += node.numReachable()
  
         self.count = count
@@ -119,7 +119,7 @@ class Dawg(object):
         for letter in word:
             if letter not in node.edges:
                 return None
-            for label, child in node.edges.iteritems():
+            for label, child in node.edges.items():
                 if label == letter: 
                     if node.final: skipped += 1
                     node = child
