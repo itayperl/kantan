@@ -14,7 +14,7 @@ class DictDawg(Dawg):
             nf_seq = None
 
             for p in pri:
-                m = re.match('nf(\d\d)', p)
+                m = re.match(r'nf(\d\d)', p)
                 if m:
                     nf_seq = int(m.group(1))
                     break
